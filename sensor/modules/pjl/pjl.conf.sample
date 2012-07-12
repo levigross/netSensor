@@ -1,0 +1,8 @@
+dependencies="packet"
+filter="tcp and dst port 9100"
+
+maxSessions="1000"	# maximum number of PJL sessions to keep in memory
+maxBufferSize="512"	# maximum amount of memory, in MiB, to use for job buffers
+timeout="60"            # PJL session timeout, in seconds
+
+data="/home/sensor/netSensor/sensor/data"

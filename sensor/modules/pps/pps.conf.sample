@@ -1,0 +1,37 @@
+dependencies="packet"
+filter="ip"
+
+# Monitor individual addresses in networks for excessive packets per second
+
+addresses="63.165.240.0/20"
+addresses="64.90.160.0/19"
+addresses="64.147.96.0/19"
+addresses="66.111.0.0/20"
+addresses="67.221.176.0/20"
+addresses="96.47.64.0/20"
+addresses="173.228.128.0/19"
+addresses="199.26.225.0/24"
+addresses="204.248.157.0/24"
+addresses="207.12.88.0/21"
+addresses="209.250.73.0/24"
+addresses="209.250.80.0/23"
+addresses="209.250.82.0/24"
+addresses="209.250.85.0/24"
+
+threshold="10000"				# packets per second after which an e-mail will be sent
+mailInterval="1800"				# send e-mail about an IP no more than once per this many seconds
+maxIPs="50000"					# maximum number of IPs for which to keep stats in memory
+timeout="10"					# IP traffic timeout, in seconds
+interface="em0"					# interface to capture offending host traffic on
+numPackets="200"				# number of packets to capture for offending host
+
+senderName="PPS Alert"				# name portion of "From" message header
+senderAddress="ppsalert@some.domain"		# SMTP envelope sender and address portion of "From" message header
+
+recipient="user1@some.other.domain"		# e-mail address to send notifications to (multiple allowed)
+recipient="user2@yet.another.domain"
+
+smtpServer="localhost:25"			# address and port of SMTP server
+smtpAuth="0"					# 1 to enable SMTP authentication
+smtpUser="username"				# SMTP username, if SMTP authentication is enabled
+smtpPassword="password"				# SMTP password, if SMTP authentication is enabled

@@ -1,0 +1,5 @@
+dependencies="packet"
+filter="tcp"		# parse all TCP traffic for HTTP data
+
+maxSessions="1000"	# maximum number of HTTP sessions to keep in memory
+timeout="10"		# session timeout, in seconds

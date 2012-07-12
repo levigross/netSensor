@@ -1,0 +1,27 @@
+DEPENDENCIES=../shared/include/* include/*
+INCLUDES=-I../shared -I.
+LIBS=lib/sensor.a ../shared/lib/shared.a
+
+sensor: ${DEPENDENCIES} sensor.cpp Makefile Makefile.sensor
+	@make sensor-${OSTYPE}
+
+sensor-FreeBSD:
+	${CXX} ${CXXFLAGS} -Wall -Wextra ${INCLUDES} -ldb -lpcap -lpthread \
+		-L/usr/local/lib -L/usr/local/lib/db5 -o sensor sensor.cpp \
+		${LIBS}
+
+sensor-linux:
+	${CXX} ${CXXFLAGS} -Wall -Wextra ${INCLUDES} -ldb -ldl -lpcap \
+		-lpthread -o sensor sensor.cpp ${LIBS}
+
+sensor-linux-gnu:
+	${CXX} ${CXXFLAGS} -Wall -Wextra ${INCLUDES} -ldb -ldl -lpcap \
+		-lpthread -o sensor sensor.cpp ${LIBS}
+
+sensor-darwin:
+	${CXX} ${CXXFLAGS} -Wall -Wextra ${INCLUDES} -ldb -lpcap -lpthread \
+		-L/opt/local/lib -L/opt/local/lib/db44 -o sensor sensor.cpp \
+		${LIBS}
+
+clean-sensor:
+	rm -f sensor

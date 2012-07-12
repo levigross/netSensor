@@ -1,0 +1,98 @@
+0.8.1 (October 26th, 2011)
+
+  * New features:
+
+    * Build infrastructure:
+
+      * Added Mac OS X support (assumes an installation of Berkeley DB 4.4 from
+        MacPorts).
+
+    * Libraries:
+
+      * Added a sensor DNS library (sensor/include/dns.*) for reverse DNS
+        resolution.
+
+      * Sensor SMTP library (sensor/include/smtp.*):
+
+        * Modified the subject() and message() member functions to return
+          std::ostringstream objects that can be used to set the subject and
+          message of an e-mail, respectively. This is believed to make using
+          the library easier.
+
+    * Sensor modules:
+
+      * Added PPS module (sensor/modules/pps), which monitors the inbound and
+        outbound packet rates of IPv4 addresses on an arbitrary number of
+        IPv4 networks. If the inbound or outbound packet rate for an IPv4
+        address exceeds a configured threshold, an e-mail to this effect is
+        sent out, which includes a snippet of traffic to and from the IPv4
+        address. Sponsored by the New York Internet Company.
+
+      * Added PJL sensor module (sensor/modules/pjl), which parses Printer Job
+        Language/PostScript printer jobs and writes various useful information
+        about them to disk. Sponsored by Ecological, LLC.
+
+    * Tools:
+
+      * Added tools/deleteRecords for deleting records from Berkeley DB Recno
+        databases.
+
+      * Added tools/dumpPJL for displaying data written by the PJL sensor
+        module.
+
+      * tools/dumpHTTP:
+
+        * Added the -cI and -sI command-line options for filtering messages by
+          client and server IPv4 addresses, respectively.
+
+  * Bug fixes:
+
+    * Libraries:
+
+      * Sensor SMTP library (sensor/include/smtp.*):
+
+        * SMTP error messages from previous attempts to send mail are no longer
+          carried over and prepended to new ones.
+
+        * Fixed a bug that caused all e-mail after the first one to be sent to
+          only the last configured recipient.
+
+        * The value of the "from" configuration parameter should not be sent as
+          the SMTP envelope sender, as that has the possibility of violating
+          RFC 2821. Consequently, the "from" configuration parameter has been
+          replaced by the "senderName" and "senderAddress" parameters, from
+          which a correct envelope sender and "From" message header will be
+          generated.
+
+      * Shared address library (shared/include/address.*):
+
+        * The binaryMAC() and textMAC() functions have been converted to use
+          homegrown address-conversion techniques instead of ether_aton_r()
+          and ether_ntoa_r(). This works around a bug in glibc 2.11.1's
+          ether_ntoa_r() function that prevents it from zero-padding Ethernet
+          addresses. It also works around the fact that some UNIX-like systems,
+          such as Mac OS X 10.6.6, don't have the ether_aton_r() or
+          ether_ntoa_r() functions.
+
+    * Sensor:
+
+      * Fixed a potential crash when a malformed TCP packet is captured.
+
+      * Fixed ICMP payload size calculation.
+
+    * Sensor modules:
+
+      * HTTP (sensor/modules/http):
+
+        * Fixed a crash.
+
+    * Tools
+
+      * tools/dumpHTTP:
+
+        * Added the -req and -res command-line options to the usage message.
+          The options themselves were always present.
+
+0.8.0 (March 1st, 2011)
+
+  * Initial release.

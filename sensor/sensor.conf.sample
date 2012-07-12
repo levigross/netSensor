@@ -1,0 +1,6 @@
+logging="on"
+log="sensor.log"
+
+interface="em0"
+modules="bt http httpLog pjl pps"
+flushInterval="10"

@@ -1,0 +1,4 @@
+dependencies="http"
+
+data="/home/sensor/netSensor/sensor/data"
+timeout="10"

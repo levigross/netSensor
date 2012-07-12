@@ -1,0 +1,16 @@
+dependencies="packet http"
+filter="udp"					# parse all UDP traffic for UDP BitTorrent tracker communication
+
+maxSessions="1000"				# maximum number of UDP tracker sessions to keep in memory
+timeout="10"					# UDP tracker session timeout, in seconds
+
+senderName="BitTorrent Alert"			# name portion of "From" message header
+senderAddress="btalert@some.domain		# SMTP envelope sender and address portion of "From" message header
+
+recipient="user1@some.other.domain"		# e-mail address to send notifications to (multiple allowed)
+recipient="user2@yet.another.domain"
+
+smtpServer="localhost:25"			# address and port of SMTP server
+smtpAuth="0"					# 1 to enable SMTP authentication
+smtpUser="username"				# SMTP username, if SMTP authentication is enabled
+smtpPassword="password"				# SMTP password, if SMTP authentication is enabled
